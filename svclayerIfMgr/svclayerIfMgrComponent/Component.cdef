@@ -1,0 +1,24 @@
+sources:
+{
+	svclayerIfMgrComponent.c
+	testApi.c
+	svclayer_process_nad_pkt.c
+}
+//////// need for test Api ////////
+provides:
+{
+	api:
+	{
+		test_API = $CURDIR/../testApi.api
+	}
+}
+
+
+///// need for IPC with svclayerNadMgr
+requires:
+{
+	api:
+	{
+		svclayerNad = svclayerNad.api
+	}
+}

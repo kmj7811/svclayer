@@ -1,0 +1,87 @@
+/*
+ * stUartATHexCmd.h
+ *
+ *  Created on: Jul 31, 2017
+ *      Author: topgun
+ */
+#include "legato.h"
+
+#ifndef STUARTMANAGER_STUARTHEXCMD_H_
+#define STUARTMANAGER_STUARTHEXCMD_H_
+
+#define D_DATATYPE_SOF			0x7F
+#define D_DATATYPE_EOF			0x7F
+
+//AVN TO TCU
+#define D_AVN_TCU_CALL_START		0x0000
+#define D_AVN_TCU_CALL_END			0x0001
+#define D_TCU_AVN_CALL_ACCEPT		0x0002
+
+#define D_AVN_TCU_CALL_START_E		0x00
+#define D_AVN_TCU_CALL_START_B		0x01
+#define D_AVN_TCU_CALL_START_C		0x02
+#define D_AVN_TCU_CALL_START_A		0x03
+#define D_AVN_TCU_CALL_START_NONE	0xFF
+
+//TCU TO AVN
+#define D_TCU_AVN_MO_CALL_CONNETING	0x0000
+#define D_TCU_AVN_MO_CALL_CONNETED		0x0001
+#define D_TCU_AVN_MO_CALL_FAILIND		0x0002
+#define D_TCU_AVN_MO_CALL_END			0x0003
+
+#define D_AVN_TCU_CALL_CONNETING_E	0x00
+#define D_AVN_TCU_CALL_CONNETING_B	0x01
+#define D_AVN_TCU_CALL_CONNETING_C	0x02
+#define D_AVN_TCU_CALL_CONNETING_A	0x03
+
+#define D_AVN_TCU_CALL_FAILIND_NOMARL_END	0x00
+#define D_AVN_TCU_CALL_FAILIND_BUSY			0x01
+
+//AVN TO TCU
+#define D_AVN_TCU_DATA_NAD_CALL_STATUS		0x00C0
+#define D_AVN_TCU_DATA_NAD_SERVICE_STATUS	0x00C1
+#define D_AVN_TCU_DATA_NAD_STAIC_INF_REQ	0x00C2
+#define D_AVN_TCU_DATA_NAD_RF_INFO_REQ		0x00C3
+
+//TCU TO AVN
+#define D_TCU_AVN_DATA_NAD_CALL_STATUS		0x00C0
+#define D_TCU_AVN_DATA_NAD_SERVICE_STATUS	0x00C1
+#define D_TCU_AVN_DATA_NAD_STAIC_INF_REQ	0x00C2
+#define D_TCU_AVN_DATA_NAD_RF_INFO_REQ		0x00C3
+
+#if 0
+#define D_TCU_AVN_MT_CALL_CONNETING		0x00D0
+#define D_TCU_AVN_MT_CALL_CONNETED		0x00D1
+#define D_TCU_AVN_MT_CALL_FAILIND		0x00D2
+#define D_TCU_AVN_MT_CALL_END			0x00D3
+#endif
+
+#define D_TCU_AVN_DATA_NAD_CALL_STATUS_CALL_IDLE		0x00
+#define D_TCU_AVN_DATA_NAD_CALL_STATUS_CALL_ORIG		0x01
+#define D_TCU_AVN_DATA_NAD_CALL_STATUS_CALL_INCOM		0x02
+#define D_TCU_AVN_DATA_NAD_CALL_STATUS_CALL_CONNECTED	0x03
+
+#define D_TCU_AVN_DATA_NAD_RF_INFO_REQ_LTE		0x00
+#define D_TCU_AVN_DATA_NAD_RF_INFO_REQ_WCDMA	0x01
+#define D_TCU_AVN_DATA_NAD_RF_INFO_REQ_GSM		0x02
+
+typedef enum
+{
+	E_CCUDATA_RESULT_FAIL,
+	E_CCUDATA_RESULT_SUCCESS,
+}e_ccudata_result;
+
+typedef enum
+{
+	E_CCUDATA_RESPONSE_FAIL,
+	E_CCUDATA_RESPONSE_SUCCESS,
+}e_ccudata_response;
+
+bool st_app_uart_HexPharser(char * inReadData,int inReadByte);
+uint8_t mcu_CalCheckSum(char * indata, int dataLength);
+void st_uart_setCallStatus(uint8_t inCallStatus,uint8_t inFailCause);
+void st_uart_callStart(uint8_t inMoCallType);
+//void st_uart_callEnd();
+void st_app_uartSetDest();
+
+#endif

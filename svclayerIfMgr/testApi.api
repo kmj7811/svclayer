@@ -1,0 +1,12 @@
+//hard limit of 1100 bytes of in an API message payload
+/*==============================TestComponent -> ServiceComponet============================================*/
+
+FUNCTION le_result_t SendCommand1
+(
+    //int32 commandType IN,
+    int32 value1 IN // max 3
+);
+FUNCTION le_result_t GetCommand1
+(
+    string message[100] OUT // max 3
+);

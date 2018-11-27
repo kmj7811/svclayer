@@ -1,0 +1,32 @@
+executables:
+{
+	svclayerifmgr = ( svclayerIfMgrComponent )
+	unitTestAPI = ( TestUnitAPI )   // need for test Api
+}
+
+processes:
+{
+	envVars:
+	{
+		LE_LOG_LEVEL = DEBUG
+	}
+
+	run:
+	{
+		( svclayerifmgr )
+	}
+
+	maxCoreDumpFileBytes: 512K
+	maxFileBytes: 512K
+}
+//// Need for test API //////////
+bindings:
+{
+	unitTestAPI.TestUnitAPI.test_API -> svclayerifmgr.svclayerIfMgrComponent.test_API
+	
+	/////// Bind other side api for IPC
+	svclayerifmgr.svclayerIfMgrComponent.svclayerNad -> svclayerNadMgr.svclayerNad
+}
+
+version: 1.0.0
+maxFileSystemBytes: 512K

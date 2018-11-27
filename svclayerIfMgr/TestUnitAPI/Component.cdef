@@ -1,0 +1,17 @@
+/////Need for Test Api/////////
+requires:
+{
+	lib:
+	{
+	}
+	
+	api:
+	{
+		test_API = $CURDIR/../testApi.api
+	}
+}
+
+sources:
+{
+	TestUnitAPI.c
+}

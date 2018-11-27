@@ -1,0 +1,57 @@
+sandboxed: false
+start: auto
+
+requires:
+{
+    device:
+    {
+        [rw] /dev/ttyHSL1 /dev/ttyHSL1
+    }
+}
+
+bindings:
+{
+		//For Application Component
+		svclayernadmgr.svclayerNadMgrComponent.le_sms -> modemService.le_sms
+		svclayernadmgr.svclayerNadMgrComponent.le_mrc -> modemService.le_mrc
+		svclayernadmgr.svclayerNadMgrComponent.le_sim -> modemService.le_sim
+		svclayernadmgr.svclayerNadMgrComponent.le_cellnet -> cellNetService.le_cellnet
+		svclayernadmgr.svclayerNadMgrComponent.le_mdc -> modemService.le_mdc
+		svclayernadmgr.svclayerNadMgrComponent.le_info -> modemService.le_info
+		svclayernadmgr.svclayerNadMgrComponent.le_mcc -> modemService.le_mcc
+		svclayernadmgr.svclayerNadMgrComponent.le_data -> dataConnectionService.le_data
+		svclayernadmgr.svclayerNadMgrComponent.le_buttonGpio22 -> gpioService.le_gpioPin22
+		svclayernadmgr.svclayerNadMgrComponent.le_buttonGpio32 -> gpioService.le_gpioPin32
+		svclayernadmgr.svclayerNadMgrComponent.le_buttonGpio33 -> gpioService.le_gpioPin33
+		svclayernadmgr.svclayerNadMgrComponent.le_audio -> audioService.le_audio
+	
+	
+	}
+executables:
+{
+	svclayernadmgr = ( svclayerNadMgrComponent )
+}
+
+processes:
+{
+	envVars:
+	{
+		LE_LOG_LEVEL = DEBUG
+	}
+
+	run:
+	{
+		( svclayernadmgr )
+	}
+
+	maxCoreDumpFileBytes: 2046K
+	maxFileBytes: 4098K
+}
+
+extern:
+{
+    svclayerNad = svclayernadmgr.svclayerNadMgrComponent.svclayerNad
+}
+
+version: 1.0.0
+maxFileSystemBytes: 512K

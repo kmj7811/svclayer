@@ -1,0 +1,18 @@
+FUNCTION le_result_t SetCommand1
+(
+    int32 value1 IN
+);
+FUNCTION le_result_t SetCommand2
+(
+    string message[100] IN
+);
+FUNCTION le_result_t SetCommand3
+(
+	int32 value1 IN,
+    string message[100] IN
+);
+FUNCTION le_result_t GetCommand1
+(
+    string message[100] OUT // max 3
+);
+

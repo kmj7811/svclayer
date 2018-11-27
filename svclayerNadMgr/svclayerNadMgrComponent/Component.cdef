@@ -1,0 +1,48 @@
+requires:
+{
+	api:
+	{
+		le_sms = modemServices/le_sms.api 
+		le_mrc = modemServices/le_mrc.api 
+		le_mdc = modemServices/le_mdc.api
+		le_mcc = modemServices/le_mcc.api 
+		le_sim = modemServices/le_sim.api 
+		le_info = modemServices/le_info.api
+		le_cellnet =le_cellnet.api 
+		le_data = le_data.api
+        le_buttonGpio33 = le_gpio.api
+        le_buttonGpio32 = le_gpio.api
+        le_buttonGpio22 = le_gpio.api
+		le_audio = le_audio.api
+	}
+
+	device:
+	{
+		[rw] /dev/null /dev/null
+	    [r] /dev/urandom /dev/urandom
+	    [r] /dev/random /dev/random
+	}
+}
+
+sources:
+{
+	svclayerNadMgrComponent.c
+	svclayerNadMgrIpc.c
+	stUartHexCmd.c
+	stUartMgr.c
+	stCall.c
+	utilTimer.c
+	stDataConnect.c
+	stGpio.c
+	stNet.c
+	stSim.c
+	stSMS.cpp
+}
+
+provides:
+{
+    api:
+    {
+        svclayerNad = svclayerNad.api
+    }
+}
