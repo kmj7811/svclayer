@@ -1,0 +1,23 @@
+
+app runProc svclayerIfMgr unitTestAPI --exe=unitTestAPI -- 3 실행시
+
+TestUnitAPI  --> svclayerIfMgr --> svclayerNadMgr
+로 차례로 호출하게 만들었음
+
+test_API_SendCommand1(atoi(arg[0])) ->
+test_api3() ->
+svclayerNad_SetCommand3(value,message)
+
+
+Jan  6 05:24:28 | unitTestAPI[3699]/TestUnitAPI T=main | TestUnitAPI.c _TestUnitAPI_COMPONENT_INIT() 6 | TEST  API
+Jan  6 05:24:28 | unitTestAPI[3699]/TestUnitAPI T=main | TestUnitAPI.c _TestUnitAPI_COMPONENT_INIT() 18 | stTestComp argNum[1]
+Jan  6 05:24:28 | unitTestAPI[3699]/TestUnitAPI T=main | TestUnitAPI.c _TestUnitAPI_COMPONENT_INIT() 29 | unitTestComp arg [3]
+Jan  6 05:24:28 | svclayerifmgr[3527]/svclayerIfMgrComponent T=main | testApi.c test_API_SendCommand1() 51 | test_API_SendCommand1 command : 3
+Jan  6 05:24:28 | svclayerifmgr[3527]/svclayerIfMgrComponent T=main | testApi.c test_API_SendCommand1() 66 |  value 2 command
+Jan  6 05:24:28 | svclayernadmgr[3411]/svclayerNadMgrComponent T=main | svclayerNadMgrIpc.c svclayerNad_SetCommand3() 72 | svclayerNad_SetCommand3 command(0x11) string: 01024647811
+
+root@swi-mdm9x15:~# app runProc svclayerIfMgr unitTestAPI --exe=unitTestAPI -- 3  -> Start Call
+
+root@swi-mdm9x15:~# app runProc svclayerIfMgr unitTestAPI --exe=unitTestAPI -- 4  -> Accep Call
+
+root@swi-mdm9x15:~# app runProc svclayerIfMgr unitTestAPI --exe=unitTestAPI -- 5  --> End call
